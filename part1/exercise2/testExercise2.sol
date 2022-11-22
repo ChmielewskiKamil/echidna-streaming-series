@@ -11,6 +11,19 @@ contract TestToken is Token {
 
     // add the property
     function echidna_cannot_be_unpaused() public view returns (bool) {
-        return is_paused;
+        return is_paused == true;
     }
 }
+
+// property testing
+// function echidna_test_pausable() public returns (bool) {
+//     return is_paused;
+//     // if return:
+//     // true -> property is valid
+//     // false -> property is not valid
+// }
+
+// // assertion testing
+// function testPausable(uint256 amountToFuzz) public {
+//     assert(is_paused);
+// }
