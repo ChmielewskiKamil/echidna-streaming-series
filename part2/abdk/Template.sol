@@ -297,8 +297,16 @@ contract EchidnaTemplate {
 
     // Test (x + y) - y == x
     function add_sub_inverse_operations(int128 x, int128 y) public {
+        emit Debug(x, y);
         int128 x_y = add(x, y);
         int128 xy_y = sub(x_y, y);
+
+        // left is not equal to right
+        emit Debug(xy_y, x);
+
+        // x+y should not be equal (x+y) - y
+        // there is a bug
+        emit Debug(x_y, xy_y);
 
         assert(xy_y == x);
     }
