@@ -306,6 +306,7 @@ contract EchidnaTemplate {
 
         // x+y should not be equal (x+y) - y
         // there is a bug
+        // FIXED IN COMMIT: aa521f1
         emit Debug(x_y, xy_y);
 
         assert(xy_y == x);
