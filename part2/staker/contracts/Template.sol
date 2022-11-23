@@ -46,12 +46,15 @@ contract EchidnaTemplate {
         // State before the "action"
         uint256 preStakedBalance = stakerContract.stakedBalances(address(this));
         // Action
-        uint256 stakedAmount = stakerContract.stake(amount);
-        // Post-condition
-        assert(
-            stakerContract.stakedBalances(address(this)) ==
-                preStakedBalance + stakedAmount
-        );
+        try stakerContract.stake(amount) returns (uint256 stakedAmount) {
+            // Post-condition
+            assert(
+                stakerContract.stakedBalances(address(this)) ==
+                    preStakedBalance + stakedAmount
+            );
+        } catch (bytes memory error) {
+            assert(false);
+        }
     }
 
     function testUnstake(uint256 _stakedAmount) public {
