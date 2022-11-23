@@ -296,7 +296,12 @@ contract EchidnaTemplate {
     }
 
     // Test (x + y) - y == x
-    function add_sub_inverse_operations(int128 x, int128 y) public {}
+    function add_sub_inverse_operations(int128 x, int128 y) public {
+        int128 x_y = add(x, y);
+        int128 xy_y = sub(x_y, y);
+
+        assert(xy_y == x);
+    }
 
     // Test that division is not commutative
     // (x / y) != (y / x)
