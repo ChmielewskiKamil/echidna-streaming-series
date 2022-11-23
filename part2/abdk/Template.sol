@@ -314,5 +314,16 @@ contract EchidnaTemplate {
 
     // Test that division is not commutative
     // (x / y) != (y / x)
-    function div_test_not_commutative(int128 x, int128 y) public {}
+
+    // fail (1, -1)
+    // it seems that the absolute values will be the same
+    function div_test_not_commutative(int128 x, int128 y) public {
+        int128 x_y = div(x, y);
+        int128 y_x = div(y, x);
+        if (abs(x) == abs(y)) {
+            assert(x_y == y_x);
+        } else {
+            assert(x_y != y_x);
+        }
+    }
 }
